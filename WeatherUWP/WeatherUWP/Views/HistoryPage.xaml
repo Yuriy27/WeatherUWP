@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="WeatherUWP.Views.HistoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WeatherUWP.Views"
+    xmlns:converter="using:WeatherUWP.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding HistoryVmInstance, Source={StaticResource Locator}}">
+    <Page.Resources>
+        <converter:ImagePathConverter x:Name="ImagePathConverter"></converter:ImagePathConverter>
+        <converter:DateConverter x:Name="DateConverter"></converter:DateConverter>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Header -->
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              Grid.Row="0"
+              Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="Back"
+                    Margin="15"
+                    HorizontalAlignment="Center"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Command="{Binding GoBack}"></Button>
+            <TextBlock Text="{Binding Title}"
+                       FontSize="20"
+                       Margin="15"
+                       TextAlignment="Center"
+                       Grid.Row="0"
+                       Grid.Column="1"></TextBlock>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Date" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="City" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Pressure" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Humidity" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="T. morn" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="T. day" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="T. even" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="T. night" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Wind" Grid.Row="0" Grid.Column="8" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Description" Grid.Row="0" Grid.Column="9" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="Icon" Grid.Row="0" Grid.Column="10" HorizontalAlignment="Center"></TextBlock>
+        </Grid>
+
+        <!--History -->
+        <ListView Grid.Row="2"
+                  ItemsSource="{Binding ForecastsHistory}"
+                  HorizontalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Date, Converter={StaticResource DateConverter}}" HorizontalAlignment="Center" Grid.Column="0"></TextBlock>
+                        <TextBlock Text="{Binding City}" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="{Binding Pressure}" HorizontalAlignment="Center" Grid.Column="2"></TextBlock>
+                        <TextBlock Text="{Binding Humidity}" HorizontalAlignment="Center" Grid.Column="3"></TextBlock>
+                        <TextBlock Text="{Binding TemperatureMorning}" HorizontalAlignment="Center" Grid.Column="4"></TextBlock>
+                        <TextBlock Text="{Binding TemperatureDay}" HorizontalAlignment="Center" Grid.Column="5"></TextBlock>
+                        <TextBlock Text="{Binding TemperatureEvening}" HorizontalAlignment="Center" Grid.Column="6"></TextBlock>
+                        <TextBlock Text="{Binding TemperatureNight}" HorizontalAlignment="Center" Grid.Column="7"></TextBlock>
+                        <TextBlock Text="{Binding WindSpeed}" HorizontalAlignment="Center" Grid.Column="8"></TextBlock>
+                        <TextBlock Text="{Binding Description}" HorizontalAlignment="Center" Grid.Column="9"></TextBlock>
+                        <Image Width="30"   Grid.Column="10" Source='{Binding Icon, Converter={StaticResource ImagePathConverter}}'></Image>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</Page>
