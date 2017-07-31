@@ -9,11 +9,11 @@ using WeatherUWP.Models.OpenWeatherModels;
 
 namespace WeatherUWP.Services
 {
-    class RestApiService
+    class RestApiClient
     {
         public const string Host = "http://localhost:53545";
 
-        protected async Task<T> GetApiRequest<T>(string url) where T : class
+        protected async Task<T> GetApiRequestAsync<T>(string url) where T : class
         {
             using (HttpClient client = new HttpClient())
             {

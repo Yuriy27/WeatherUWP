@@ -9,21 +9,11 @@ using WeatherUWP.Models.OpenWeatherModels;
 
 namespace WeatherUWP.Services
 {
-    class ForecastService : RestApiService, IForecastService
+    class ForecastService : RestApiClient, IForecastService
     {
-        //private const string Host = "http://localhost:53545";
-
-        public async Task<ForecastObject> GetForecast(string city, int days)
+        public async Task<ForecastObject> GetForecastAsync(string city, int days)
         {
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    var response = await client.GetAsync($"{Host}/api/v1/forecast/{city}/{days}");
-            //    response.EnsureSuccessStatusCode();
-            //    string data = await response.Content.ReadAsStringAsync();
-
-            //    return await Task.Run(() => JsonConvert.DeserializeObject<ForecastObject>(data));
-            //}
-            return await GetApiRequest<ForecastObject>($"{Host}/api/v1/forecast/{city}/{days}");
+            return await GetApiRequestAsync<ForecastObject>($"{Host}/api/v1/forecast/{city}/{days}");
         }
     }
 }

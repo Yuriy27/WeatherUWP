@@ -12,6 +12,7 @@
         <converter:ImagePathConverter x:Name="ImagePathConverter"></converter:ImagePathConverter>
         <converter:DateConverter x:Name="DateConverter"></converter:DateConverter>
         <converter:SecondsToDateConverter x:Name="SecondsToDateConverter"></converter:SecondsToDateConverter>
+        <converter:CityNamesConverter x:Name="CityNamesConverter"></converter:CityNamesConverter>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -66,6 +67,17 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <ComboBox 
+                Grid.Row="0"
+                Grid.Column="0"
+                ItemsSource="{Binding CityNames}"
+                HorizontalAlignment="Center"
+                Width="180"
+                VerticalAlignment="Center"
+                SelectedValue="{Binding SelectedCity, Mode=TwoWay}">
+                
+            </ComboBox>
+            
             <TextBox 
                 Text="{Binding City, Mode=TwoWay}"
                 Grid.Row="0"

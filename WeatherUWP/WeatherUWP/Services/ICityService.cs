@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherUWP.Models.OpenWeatherModels;
+using WeatherUWP.Models;
 
 namespace WeatherUWP.Services
 {
-    interface IForecastService
+    interface ICityService
     {
-        Task<ForecastObject> GetForecastAsync(string city, int days);
+        Task<IEnumerable<City>> GetDefaultCitiesAsync();
     }
 }

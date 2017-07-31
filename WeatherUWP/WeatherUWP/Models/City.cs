@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherUWP.Models;
 
-namespace WeatherUWP.Services
+namespace WeatherUWP.Models
 {
-    interface IHistoryService
+    class City
     {
-        Task<IEnumerable<History>> GetHistoryAsync();
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

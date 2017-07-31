@@ -26,6 +26,7 @@ namespace WeatherUWP
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
             SimpleIoc.Default.Register<IForecastService>(() => new ForecastService());
             SimpleIoc.Default.Register<IHistoryService>(() => new HistoryService());
+            SimpleIoc.Default.Register<ICityService>(() => new CityService());
 
             SimpleIoc.Default.Register<HistoryViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();

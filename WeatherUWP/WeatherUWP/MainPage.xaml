@@ -9,8 +9,38 @@
     DataContext="{Binding MainPageVmInstance, Source={StaticResource Locator}}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="forecast" Width="100" Height="40" Command="{Binding GoToForecast}" Content="Forecast" HorizontalAlignment="Left"></Button>
-        <Button x:Name="settings" Width="100" Height="40" Command="{Binding GoToSettings}" Content="Settings" HorizontalAlignment="Center"></Button>
-        <Button x:Name="history" Width="100" Height="40" Command="{Binding GoToHistory}" Content="History" HorizontalAlignment="Right"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button 
+            Width="200" Height="200" 
+            Command="{Binding GoToForecast}" 
+            Content="Forecast" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="0"
+            Grid.Column="0"></Button>
+        <Button 
+            Width="200" 
+            Height="200" 
+            Command="{Binding GoToSettings}" 
+            Content="Settings" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="0"
+            Grid.Column="1"></Button>
+        <Button 
+            Width="200" Height="200" 
+            Command="{Binding GoToHistory}" 
+            Content="History" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="0"
+            Grid.Column="2"></Button>
     </Grid>
 </Page>

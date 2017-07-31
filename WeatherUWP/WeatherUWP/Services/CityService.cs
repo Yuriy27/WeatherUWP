@@ -6,16 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WeatherUWP.Models;
-using WeatherUWP.Models.OpenWeatherModels;
 
 namespace WeatherUWP.Services
 {
-    class HistoryService : RestApiClient, IHistoryService
+    class CityService : RestApiClient, ICityService
     {
-
-        public async Task<IEnumerable<History>> GetHistoryAsync()
+        public async Task<IEnumerable<City>> GetDefaultCitiesAsync()
         {
-            return await GetApiRequestAsync<IEnumerable<History>>($"{Host}/api/v1/history");
+            return await GetApiRequestAsync<IEnumerable<City>>($"{Host}/api/v1/cities");
         }
     }
 }

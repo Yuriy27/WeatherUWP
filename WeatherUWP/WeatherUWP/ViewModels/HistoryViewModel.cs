@@ -13,9 +13,9 @@ namespace WeatherUWP.ViewModels
 {
     class HistoryViewModel : BaseViewModel
     {
-        private INavigationService _navigation;
+        private readonly INavigationService _navigation;
 
-        private IHistoryService _historyService;
+        private readonly IHistoryService _historyService;
 
         public ICommand GoBack { get; set; }
 
@@ -35,7 +35,7 @@ namespace WeatherUWP.ViewModels
 
         private async void InitValues()
         {
-            ForecastsHistory = await _historyService.GetHistory();
+            ForecastsHistory = await _historyService.GetHistoryAsync();
             RaisePropertyChanged(() => ForecastsHistory);
         }
     }
