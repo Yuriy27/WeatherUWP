@@ -13,7 +13,7 @@
         <converter:DateConverter x:Name="DateConverter"></converter:DateConverter>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -24,8 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Header -->
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-              Grid.Row="0"
+        <Grid Grid.Row="0"
               Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -34,14 +33,22 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Content="Back"
+            <Button Width="60"
+                    Height="30"
                     Margin="15"
                     HorizontalAlignment="Center"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Command="{Binding GoBack}"></Button>
+                    Command="{Binding GoBack}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/back.png"></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <TextBlock Text="{Binding Title}"
                        FontSize="20"
+                       Foreground="White"
                        Margin="15"
                        TextAlignment="Center"
                        Grid.Row="0"

@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WeatherUWP.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,6 +23,7 @@ namespace WeatherUWP.Views
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+
         public SettingsPage()
         {
             this.InitializeComponent();

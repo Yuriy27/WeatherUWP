@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using WeatherUWP.Messages;
 using WeatherUWP.Services;
 using WeatherUWP.Models.OpenWeatherModels;
 using City = WeatherUWP.Models.City;
@@ -45,6 +46,8 @@ namespace WeatherUWP.ViewModels
             _forecastService = forecastService;
             _cityService = cityService;
 
+            MessengerInstance.Register<CitiesRefreshMessage>(this, CitiesRefresh);
+
             InitValues();
         }
 
@@ -56,13 +59,23 @@ namespace WeatherUWP.ViewModels
             GoBack = new RelayCommand(() => _navigation.GoBack());
             ForecastCommand = new RelayCommand(GetForecast);
 
+            LoadCities();
+        }
+
+        private async void LoadCities()
+        {
             Cities = (await _cityService.GetDefaultCitiesAsync()).ToList();
             CityNames = new ObservableCollection<string>(Cities.Select(c => c.Name).ToList());
             SelectedCity = CityNames.Count == 0 ? null : CityNames[0];
             NotificateView();
         }
 
-        public async void GetForecast()
+        private void CitiesRefresh(CitiesRefreshMessage message)
+        {
+            LoadCities();
+        }
+
+        private async void GetForecast()
         {
             var searchCity = string.IsNullOrEmpty(City) ? SelectedCity : City;
             try

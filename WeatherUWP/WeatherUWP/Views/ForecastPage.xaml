@@ -12,7 +12,6 @@
         <converter:ImagePathConverter x:Name="ImagePathConverter"></converter:ImagePathConverter>
         <converter:DateConverter x:Name="DateConverter"></converter:DateConverter>
         <converter:SecondsToDateConverter x:Name="SecondsToDateConverter"></converter:SecondsToDateConverter>
-        <converter:CityNamesConverter x:Name="CityNamesConverter"></converter:CityNamesConverter>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -37,12 +36,19 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Content="Back"
+            <Button Width="60"
+                    Height="30"
                     Margin="15"
                     HorizontalAlignment="Center"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Command="{Binding GoBack}"></Button>
+                    Command="{Binding GoBack}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/back.png"></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <TextBlock Text="{Binding Title}"
                        FontSize="20"
                        Margin="15"

@@ -15,13 +15,42 @@ namespace WeatherUWP.Services
 
         protected async Task<T> GetApiRequestAsync<T>(string url) where T : class
         {
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 var response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 string data = await response.Content.ReadAsStringAsync();
 
                 return await Task.Run(() => JsonConvert.DeserializeObject<T>(data));
+            }
+        }
+
+        protected async Task PostApiRequestAsync(string url, object requestData)
+        {
+            using (var client = new HttpClient())
+            {
+                var req = new StringContent(JsonConvert.SerializeObject(requestData), Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(url, req);
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+        protected async Task DeleteApiRequestAsync(string url)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.DeleteAsync(url);
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+        protected async Task PutApiRequestAsync(string url, object requestData)
+        {
+            using (var client = new HttpClient())
+            {
+                var req = new StringContent(JsonConvert.SerializeObject(requestData), Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(url, req);
+                response.EnsureSuccessStatusCode();
             }
         }
     }

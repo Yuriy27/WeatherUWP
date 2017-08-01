@@ -5,9 +5,136 @@
     xmlns:local="using:WeatherUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding SettingsVmInstance,Source={StaticResource Locator}}"
+    x:Name="Page">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="forecast" Width="100" Height="40" Content="Set" HorizontalAlignment="Left"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Header -->
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              Grid.Row="0"
+              Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Width="60"
+                    Height="30"
+                    Margin="15"
+                    HorizontalAlignment="Center"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Command="{Binding GoBack}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/back.png"></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBlock Text="{Binding Title}"
+                       FontSize="20"
+                       Margin="15"
+                       TextAlignment="Center"
+                       Grid.Row="0"
+                       Grid.Column="1"></TextBlock>
+
+        </Grid>
+        
+        
+         <!--Settings form--> 
+        <ListView
+            Grid.Row="1"
+            Grid.Column="0"
+            ItemsSource="{Binding Cities}"
+            HorizontalAlignment="Stretch"
+            x:Name="CitiesEditForm">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <!--<ColumnDefinition Width="6*"></ColumnDefinition>-->
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBox 
+                            Width="200"
+                            VerticalAlignment="Center"
+                            Text="{Binding Name, Mode=TwoWay}"
+                            Grid.Row="0"
+                            Grid.Column="0"></TextBox>
+
+                        <Button
+                            Content="Update"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            CommandParameter="{Binding Id}"
+                            Command="{Binding DataContext.UpdateCity, ElementName=CitiesEditForm}"></Button>
+
+                        <Button
+                            Content="Delete"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            CommandParameter="{Binding Id}"
+                            Command="{Binding DataContext.DeleteCity, ElementName=CitiesEditForm}"></Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            Grid.Row="2"
+            Grid.Column="0"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox 
+                
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Text="{Binding NewCity, Mode=TwoWay}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="12"
+                PlaceholderText="Enter new city.."></TextBox>
+
+            <Button
+                Content="Add"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="0"
+                Grid.Column="1"
+                Command="{Binding AddCity}"></Button>
+
+        </Grid>
+
+        <TextBlock Grid.Row="3" Text="{Binding Error}" Foreground="Red" HorizontalAlignment="Left" Margin="50"></TextBlock>
     </Grid>
 </Page>

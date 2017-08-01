@@ -25,6 +25,6 @@ namespace WeatherUWP.Views
         public HistoryPage()
         {
             this.InitializeComponent();
-        }
+        }     
     }
 }

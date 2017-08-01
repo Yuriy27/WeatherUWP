@@ -15,5 +15,20 @@ namespace WeatherUWP.Services
         {
             return await GetApiRequestAsync<IEnumerable<City>>($"{Host}/api/v1/cities");
         }
+
+        public async Task DeleteCityAsync(int id)
+        {
+            await DeleteApiRequestAsync($"{Host}/api/v1/cities/{id}");
+        }
+
+        public async Task UpdateCityAsync(City city)
+        {
+            await PutApiRequestAsync($"{Host}/api/v1/cities", city);
+        }
+
+        public async Task AddCityAsync(City city)
+        {
+            await PostApiRequestAsync($"{Host}/api/v1/cities", city);
+        }
     }
 }
