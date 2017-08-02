@@ -19,7 +19,7 @@ namespace WeatherUWP.ViewModels
 
         public ICommand GoBack { get; set; }
 
-        public IEnumerable<History> ForecastsHistory { get; set; }
+        public List<History> ForecastsHistory { get; set; }
 
         public HistoryViewModel(INavigationService navigation, IHistoryService historyService)
         {

@@ -9,6 +9,6 @@ namespace WeatherUWP.Services
 {
     interface IHistoryService
     {
-        Task<IEnumerable<History>> GetHistoryAsync();
+        Task<List<History>> GetHistoryAsync();
     }
 }

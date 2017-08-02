@@ -13,9 +13,9 @@ namespace WeatherUWP.Services
     class HistoryService : RestApiClient, IHistoryService
     {
 
-        public async Task<IEnumerable<History>> GetHistoryAsync()
+        public async Task<List<History>> GetHistoryAsync()
         {
-            return await GetApiRequestAsync<IEnumerable<History>>($"{Host}/api/v1/history");
+            return await GetApiRequestAsync<List<History>>($"{Host}/api/v1/history");
         }
     }
 }

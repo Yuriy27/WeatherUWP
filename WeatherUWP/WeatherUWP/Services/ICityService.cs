@@ -9,7 +9,7 @@ namespace WeatherUWP.Services
 {
     interface ICityService
     {
-        Task<IEnumerable<City>> GetDefaultCitiesAsync();
+        Task<List<City>> GetDefaultCitiesAsync();
 
         Task DeleteCityAsync(int id);
 

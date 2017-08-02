@@ -43,10 +43,9 @@ namespace WeatherUWP.ViewModels
             GoBack = new RelayCommand(() => _navigation.GoBack());
             AddCity = new RelayCommand(AddNewCity);
             DeleteCity = new DeleteCommand(_cityService, InitCities);
+            UpdateCity = new UpdateCommand(_cityService, LoadCity, InitCities);
 
             InitCities();
-
-            UpdateCity = new UpdateCommand(_cityService, LoadCity, InitCities);
         }
 
         private City LoadCity(int id)
@@ -56,7 +55,7 @@ namespace WeatherUWP.ViewModels
 
         private async void InitCities()
         {
-            Cities = (await _cityService.GetDefaultCitiesAsync()).ToList();
+            Cities = await _cityService.GetDefaultCitiesAsync();
             NewCity = string.Empty;
             MessengerInstance.Send(new CitiesRefreshMessage());
             NotificateView();

@@ -11,9 +11,9 @@ namespace WeatherUWP.Services
 {
     class CityService : RestApiClient, ICityService
     {
-        public async Task<IEnumerable<City>> GetDefaultCitiesAsync()
+        public async Task<List<City>> GetDefaultCitiesAsync()
         {
-            return await GetApiRequestAsync<IEnumerable<City>>($"{Host}/api/v1/cities");
+            return await GetApiRequestAsync<List<City>>($"{Host}/api/v1/cities");
         }
 
         public async Task DeleteCityAsync(int id)

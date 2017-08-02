@@ -32,7 +32,7 @@ namespace WeatherUWP.ViewModels
 
         public List<City> Cities { get; set; }
 
-        public ObservableCollection<string> CityNames { get; set; }
+        public List<string> CityNames { get; set; }
 
         public int Days { get; set; }
 
@@ -51,7 +51,7 @@ namespace WeatherUWP.ViewModels
             InitValues();
         }
 
-        private async void InitValues()
+        private void InitValues()
         {
             Title = "Weather forecast";
             Days = 1;
@@ -64,8 +64,8 @@ namespace WeatherUWP.ViewModels
 
         private async void LoadCities()
         {
-            Cities = (await _cityService.GetDefaultCitiesAsync()).ToList();
-            CityNames = new ObservableCollection<string>(Cities.Select(c => c.Name).ToList());
+            Cities = await _cityService.GetDefaultCitiesAsync();
+            CityNames = Cities.Select(c => c.Name).ToList();
             SelectedCity = CityNames.Count == 0 ? null : CityNames[0];
             NotificateView();
         }
